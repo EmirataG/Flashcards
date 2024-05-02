@@ -1,0 +1,76 @@
+﻿<Window x:Class="Flashcards.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Flashcards"
+        xmlns:viewModel="clr-namespace:Flashcards.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Echelon: Your Flashcards App"
+        Height="450"
+        Width="800"
+        MinHeight="450"
+        MinWidth="800">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Background="White"
+                    CornerRadius="10"
+                    Margin="10">
+                <StackPanel>
+                    <Image Source="/logo.png"
+                           Width="100"
+                           Margin="0, 20, 0, 0" />
+
+                    <TextBlock Text="Echelon"
+                               Foreground="Black"
+                               FontWeight="Bold"
+                               FontSize="18"
+                               HorizontalAlignment="Center"
+                               Margin="0, 0, 0, 20" />
+
+                    <RadioButton Content="My Sets"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 IsChecked="True"
+                                 Command="{Binding MySetsViewCommand}" />
+                    <RadioButton Content="Browse Sets"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding BrowseSetsViewCommand}" />
+                    <RadioButton Content="Create a New Set"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding CreateSetViewCommand}" />
+                    <RadioButton Content="Edit Profile"
+                                 Style="{StaticResource MenuButtonTheme}" />
+                </StackPanel>
+            </Border>
+
+
+
+            <ContentControl Grid.Column="1"
+                            Margin="20"
+                            Content="{Binding CurrentView}">
+            </ContentControl>
+
+        </Grid>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0 0"
+                                 EndPoint="0 1">
+                <GradientStop Color="#0A0068"
+                              Offset="0.0" />
+                <GradientStop Color="#7A00B2"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+</Window>

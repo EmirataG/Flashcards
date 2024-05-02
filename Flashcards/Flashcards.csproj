@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="MVVM\View\NewFolder\**" />
+    <EmbeddedResource Remove="MVVM\View\NewFolder\**" />
+    <None Remove="MVVM\View\NewFolder\**" />
+    <Page Remove="MVVM\View\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\IndieFlower-Regular.ttf" />
+    <None Remove="logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\IndieFlower-Regular.ttf" />
+    <Resource Include="logo.png" />
+  </ItemGroup>
+
+</Project>

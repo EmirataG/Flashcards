@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="TextBox"
+           x:Key="FlashcardSide">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="10"
+                                BorderThickness="0"
+                                Background="White"
+                                Margin="10"
+                                Width="200"
+                                Height="100">
+                            <TextBox HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Text="{TemplateBinding Text}"
+                                     BorderThickness="0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

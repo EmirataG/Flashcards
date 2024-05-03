@@ -8,9 +8,9 @@ namespace Flashcards.MVVM.Model
     {
         public static ObservableCollection<User> TestUsers = new ObservableCollection<User>()
         {
-            new User(1, "Emir"),
-            new User(2, "Ervin"),
-            new User(3, "Aksin")
+            new User(1, "Emir", "12345678"),
+            new User(2, "Ervin", "12345678"),
+            new User(3, "Aksin", "12345678")
         };
         public static ObservableCollection<FlashcardSet> TestSets { get; set; } = new ObservableCollection<FlashcardSet>()
         {

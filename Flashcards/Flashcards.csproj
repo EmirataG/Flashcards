@@ -16,16 +16,14 @@
 
   <ItemGroup>
     <None Remove="Fonts\IndieFlower-Regular.ttf" />
-    <None Remove="logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\SideImage-transformed.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Fonts\IndieFlower-Regular.ttf" />
-    <Resource Include="logo.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\SideImage-transformed.jpeg" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using Flashcards.Core;
 using Flashcards.MVVM.Model;
 using Flashcards.MVVM.View;
+using Flashcards.MVVM.ViewModel.Registration;
 using System.Windows.Controls;
 
 namespace Flashcards.MVVM.ViewModel
@@ -12,16 +13,14 @@ namespace Flashcards.MVVM.ViewModel
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = new MainViewModel();
-                }
                 return _instance;
             }
         }
+        public User CurrentUser { get; set; }
         public RelayCommand MySetsViewCommand { get; set; }
         public RelayCommand CreateSetViewCommand { get; set; }
         public RelayCommand BrowseSetsViewCommand { get; set; }
+        public RelayCommand LogOutCommand { get; set; }
 
 
         public MySetsViewModel MySetsVM { get; set; }
@@ -41,8 +40,9 @@ namespace Flashcards.MVVM.ViewModel
             }
         }
 
-        public MainViewModel()
+        public MainViewModel(User currentUser)
         {
+            CurrentUser = currentUser;
             _instance = this;
             MySetsVM = new MySetsViewModel();
             CreateSetVM = new CreateSetViewModel();
@@ -63,6 +63,11 @@ namespace Flashcards.MVVM.ViewModel
             BrowseSetsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = BrowseSetsVM;
+            });
+
+            LogOutCommand = new RelayCommand(o =>
+            {
+                WindowViewModel.Instance.CurrentView = new RegistrationViewModel();
             });
         }
     }

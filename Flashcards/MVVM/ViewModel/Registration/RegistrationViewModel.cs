@@ -1,9 +1,5 @@
 ﻿using Flashcards.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Flashcards.MVVM.ViewModel.Registration
 {
@@ -29,6 +25,9 @@ namespace Flashcards.MVVM.ViewModel.Registration
         {
             LogInVM = new LogInViewModel();
             SignUpVM = new SignUpViewModel();
+
+            _currentView = LogInVM;
+
             LogInViewCommand = new RelayCommand(o => 
             {
                 CurrentView = LogInVM;

@@ -1,13 +1,13 @@
 ﻿using Flashcards.Core;
 using Flashcards.MVVM.Model;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Flashcards.MVVM.ViewModel
 {
     public class MySetsViewModel : ObservableObject
     {
+        public User CurrentUser { get; set; }
         private ObservableCollection<FlashcardSet> _mySets;
         public ObservableCollection<FlashcardSet> MySets
         {
@@ -20,7 +20,8 @@ namespace Flashcards.MVVM.ViewModel
         }
         public MySetsViewModel()
         {
-            _mySets = new ObservableCollection<FlashcardSet>(DemoSets.TestSets.Where(set => set.Creator.ID == 1));
+            CurrentUser = MainViewModel.Instance.CurrentUser;
+            _mySets = new ObservableCollection<FlashcardSet>(DemoSets.TestSets.Where(set => set.Creator.ID == CurrentUser.ID));
         }
     }
 }

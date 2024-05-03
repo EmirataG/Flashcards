@@ -15,8 +15,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="Emir, Here are Your Sets"
-                   Style="{StaticResource TitleText}" />
+                   Style="{StaticResource TitleText}">
+            <TextBlock.Text>
+                <Binding Path="CurrentUser.Name"
+                         StringFormat="Hey {0}, Here are Your Sets: "/>
+            </TextBlock.Text>
+        </TextBlock>
         <TextBlock Grid.Row="1"
                    Text="My Sets:"
                    Foreground="White"

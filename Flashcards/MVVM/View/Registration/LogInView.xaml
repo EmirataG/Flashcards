@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+
     <Border Grid.Row="1"
             Margin="20, 20, 20, 20"
             CornerRadius="20"
@@ -33,20 +34,23 @@
                        Margin="20, 20, 20, 0"
                        FontFamily="Montserrat" />
             <TextBox Grid.Row="2"
-                     Margin="20, 0, 20, 20" />
+                     Margin="20, 0, 20, 20"
+                     Text="{Binding EnteredUsername}"/>
             <TextBlock Grid.Row="3"
                        Text="password"
                        Margin="20, 20, 20, 0"
                        FontFamily="Montserrat" />
             <TextBox Grid.Row="4"
-                     Margin="20, 0, 20, 20" />
+                     Margin="20, 0, 20, 20"
+                     Text="{Binding EnteredPassword}"/>
             <Button Grid.Row="5"
                     Content="Log in"
                     HorizontalAlignment="Center"
                     Margin="20"
                     Background="PeachPuff"
                     FontFamily="Montserrat"
-                    FontSize="16" />
+                    FontSize="16"
+                    Command="{Binding LogInCommand}" />
         </Grid>
     </Border>
 </UserControl>

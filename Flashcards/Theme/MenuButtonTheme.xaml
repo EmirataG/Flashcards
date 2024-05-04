@@ -10,10 +10,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid
+                        <Border
                             Margin="5"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
+                            CornerRadius="5"
                             Background="{TemplateBinding Background}">
 
                             <TextBlock 
@@ -21,7 +22,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="{TemplateBinding Property=Foreground}"
                                 Margin="5"/>
-                        </Grid>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -32,7 +33,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="DarkOrange"/>
+                <Setter Property="Background" Value="PeachPuff"/>
             </Trigger>
         </Style.Triggers>
 

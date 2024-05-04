@@ -3,6 +3,7 @@ using Flashcards.MVVM.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
 
+
 namespace Flashcards.MVVM.ViewModel
 {
     public class MySetsViewModel : ObservableObject
@@ -18,10 +19,21 @@ namespace Flashcards.MVVM.ViewModel
                 OnPropertyChanged(nameof(MySets));
             }
         }
+        public RelayCommand SelectSetCommand { get; set; }
         public MySetsViewModel()
         {
             CurrentUser = MainViewModel.Instance.CurrentUser;
             _mySets = new ObservableCollection<FlashcardSet>(DemoSets.TestSets.Where(set => set.Creator.ID == CurrentUser.ID));
+
+            SelectSetCommand = new RelayCommand(SelectSet);
+        }
+
+        private void SelectSet(object set)
+        {
+            if (set is FlashcardSet selectedSet)
+            {
+                MainViewModel.Instance.CurrentView = new TakeTestViewModel(selectedSet);
+            }
         }
     }
 }

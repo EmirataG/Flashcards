@@ -8,49 +8,51 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
 
-    <Border Grid.Row="1"
-            Margin="20, 20, 20, 20"
-            CornerRadius="20"
-            Background="White">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0"
-                       Text="Log In"
-                       Margin="20, 10, 20, 0"
-                       FontFamily="Montserrat"
-                       HorizontalAlignment="Center"
-                       Foreground="#0A0068"
-                       FontWeight="Bold"
-                       FontSize="28" />
-            <TextBlock Grid.Row="1"
-                       Text="username"
-                       Margin="20, 20, 20, 0"
-                       FontFamily="Montserrat" />
-            <TextBox Grid.Row="2"
-                     Margin="20, 0, 20, 20"
-                     Text="{Binding EnteredUsername}"/>
-            <TextBlock Grid.Row="3"
-                       Text="password"
-                       Margin="20, 20, 20, 0"
-                       FontFamily="Montserrat" />
-            <TextBox Grid.Row="4"
-                     Margin="20, 0, 20, 20"
-                     Text="{Binding EnteredPassword}"/>
-            <Button Grid.Row="5"
-                    Content="Log in"
-                    HorizontalAlignment="Center"
-                    Margin="20"
-                    Background="PeachPuff"
-                    FontFamily="Montserrat"
-                    FontSize="16"
-                    Command="{Binding LogInCommand}" />
-        </Grid>
-    </Border>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1"
+                   Text="Log In"
+                   Margin="20, 10, 20, 0"
+                   FontFamily="Montserrat"
+                   HorizontalAlignment="Center"
+                   Foreground="#0A0068"
+                   FontWeight="Bold"
+                   FontSize="28" />
+        <TextBlock Grid.Row="3"
+                   Text="username"
+                   Margin="20, 20, 20, 0"
+                   FontFamily="Montserrat" />
+        <TextBox Grid.Row="4"
+                 Margin="20, 0, 20, 20"
+                 Text="{Binding EnteredUsername}" 
+                 Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Grid.Row="6"
+                   Text="password"
+                   Margin="20, 20, 20, 0"
+                   FontFamily="Montserrat" />
+        <TextBox Grid.Row="7"
+                 Margin="20, 0, 20, 20"
+                 Text="{Binding EnteredPassword}"
+                 Style="{StaticResource TextBoxStyle}"/>
+        <Button Grid.Row="9"
+                Content="Log in"
+                HorizontalAlignment="Center"
+                Margin="20"
+                FontSize="16"
+                Command="{Binding LogInCommand}"
+                Style="{StaticResource ButtonStyle}"/>
+    </Grid>
 </UserControl>

@@ -11,16 +11,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TitleTextTheme.xaml"/>
-                <ResourceDictionary Source="Theme/FlashcardSideTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/TitleTextTheme.xaml" />
+                <ResourceDictionary Source="Theme/FlashcardSideTheme.xaml" />
                 <ResourceDictionary Source="Theme/CircularButtonTheme.xaml" />
-                <ResourceDictionary Source="Theme/FlashcardTheme.xaml"/>
+                <ResourceDictionary Source="Theme/FlashcardTheme.xaml" />
+                <ResourceDictionary Source="Theme/ButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="{x:Type Control}">
+            <Style TargetType="Control">
                 <Setter Property="FontFamily"
-                        Value="Arial" />
+                        Value="Montserrat" />
             </Style>
 
             <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
@@ -32,15 +34,15 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:CreateSetViewModel}">
-                <view:CreateSetView/>
+                <view:CreateSetView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:BrowseSetsViewModel}">
-                <view:BrowseSetsView/>
+                <view:BrowseSetsView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:TakeTestViewModel}">
-                <view:TakeTestView/>
+                <view:TakeTestView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type regViewModel:RegistrationViewModel}">
@@ -53,7 +55,7 @@
             <DataTemplate DataType="{x:Type regViewModel:SignUpViewModel}">
                 <regView:SignUpView />
             </DataTemplate>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 

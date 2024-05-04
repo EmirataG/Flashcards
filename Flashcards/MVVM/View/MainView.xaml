@@ -41,7 +41,10 @@
                 <Button Content="Log Out"
                         HorizontalAlignment="Center"
                         Margin="0, 0, 0, 20"
-                        Command="{Binding LogOutCommand}"/>
+                        Command="{Binding LogOutCommand}"
+                        FontWeight="DemiBold"
+                        Style="{StaticResource ButtonStyle}"
+                        Width="100"/>
 
                 <RadioButton Content="My Sets"
                              Style="{StaticResource MenuButtonTheme}"

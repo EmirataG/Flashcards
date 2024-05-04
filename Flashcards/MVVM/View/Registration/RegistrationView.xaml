@@ -31,9 +31,9 @@
               Margin="10">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <!-- Top Bar -->
@@ -66,17 +66,25 @@
                              Command="{Binding SignUpViewCommand}" />
             </Grid>
 
-            <ContentControl Grid.Row="1"
-                            Content="{Binding CurrentView}">
-            </ContentControl>
+            <Border Grid.Row="1"
+                    Margin="20, 0, 20, 10"
+                    CornerRadius="20"
+                    Background="White">
+                <ContentControl Grid.Row="1"
+                                Content="{Binding CurrentView}">
+                </ContentControl>
+            </Border>
+
+
 
             <TextBlock Grid.Row="2"
                        HorizontalAlignment="Right"
                        Text="Echelon"
+                       VerticalAlignment="Center"
                        FontFamily="Montserrat"
                        FontSize="36"
                        Foreground="White"
-                       FontWeight="Bold"/>
+                       FontWeight="Bold" />
         </Grid>
     </Grid>
 </UserControl>

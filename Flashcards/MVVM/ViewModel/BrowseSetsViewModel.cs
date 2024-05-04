@@ -28,8 +28,7 @@ namespace Flashcards.MVVM.ViewModel
 
         private void SelectSet(object set)
         {
-            var selectedSet = set as FlashcardSet;
-            if (selectedSet != null)
+            if (set is FlashcardSet selectedSet)
             {
                 MainViewModel.Instance.CurrentView = new TakeTestViewModel(selectedSet);
             }

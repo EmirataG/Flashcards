@@ -1,5 +1,6 @@
 ﻿using Flashcards.Core;
 using Flashcards.MVVM.Model;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Flashcards.MVVM.ViewModel
@@ -67,8 +68,10 @@ namespace Flashcards.MVVM.ViewModel
         {
             get
             {
-                return _isFront ? Set.Flashcards[_currentCardIndex] : new Flashcard(Set.Flashcards[_currentCardIndex].Back, Set.Flashcards[_currentCardIndex].Front);
+                var flashcardsList = Set.Flashcards.ToList();
+                return _isFront ? flashcardsList[_currentCardIndex] : new Flashcard(flashcardsList[_currentCardIndex].Back, flashcardsList[_currentCardIndex].Front);
             }
         }
+
     }
 }

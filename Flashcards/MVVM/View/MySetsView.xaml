@@ -17,7 +17,7 @@
         <TextBlock Grid.Row="0"
                    Style="{StaticResource TitleText}">
             <TextBlock.Text>
-                <Binding Path="CurrentUser.Name"
+                <Binding Path="CurrentUser.Username"
                          StringFormat="Hey {0}, Here are Your Sets: "/>
             </TextBlock.Text>
         </TextBlock>
@@ -35,40 +35,59 @@
                       BorderThickness="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="5"
-                                CornerRadius="5"
-                                Background="White">
-                            <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalContentAlignment="Stretch"
-                                    Command="{Binding DataContext.SelectSetCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                    CommandParameter="{Binding}">
-                                <Button.Content>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Border Grid.Column="0"
-                                                BorderThickness="0, 0, 1, 0"
-                                                BorderBrush="DimGray">
-                                            <TextBlock Text="{Binding SetName}"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0"
+                                    Margin="5"
+                                    CornerRadius="5"
+                                    Background="White">
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        HorizontalContentAlignment="Stretch"
+                                        Command="{Binding DataContext.SelectSetCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding}">
+                                    <Button.Content>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0"
+                                                    BorderThickness="0, 0, 1, 0"
+                                                    BorderBrush="DimGray">
+                                                <TextBlock Text="{Binding SetName}"
+                                                           Margin="10" />
+                                            </Border>
+                                            <Border Grid.Column="1"
+                                                    BorderThickness="0, 0, 1, 0"
+                                                    BorderBrush="DimGray">
+                                                <TextBlock Text="{Binding Creator.Username}"
+                                                           Margin="10" />
+                                            </Border>
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding Flashcards.Count}"
                                                        Margin="10" />
-                                        </Border>
-                                        <Border Grid.Column="1"
-                                                BorderThickness="0, 0, 1, 0"
-                                                BorderBrush="DimGray">
-                                            <TextBlock Text="{Binding Creator.Name}"
-                                                       Margin="10" />
-                                        </Border>
-                                        <TextBlock Grid.Column="2"
-                                                   Text="{Binding NumCards}"
-                                                   Margin="10" />
-                                    </Grid>
-                                </Button.Content>
-                            </Button>
-                        </Border>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </Border>
+                            <Button Grid.Column="1"
+                                    Style="{StaticResource CircularButtonStyle}"
+                                    Content="Edit"
+                                    Command="{Binding DataContext.EditSetCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}"/>
+                            <Button Grid.Column="2"
+                                    Style="{StaticResource CircularButtonStyle}"
+                                    Content="X"
+                                    Command="{Binding DataContext.DeleteSetCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}"/>
+                        </Grid>
+
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

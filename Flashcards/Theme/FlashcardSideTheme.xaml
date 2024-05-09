@@ -12,11 +12,28 @@
                                 Margin="10"
                                 Width="200"
                                 Height="100">
-                            <TextBox HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     Text="{TemplateBinding Text}"
-                                     BorderThickness="0" />
+                            <Grid>
+                                <ScrollViewer Margin="0"
+                                              x:Name="PART_ContentHost"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="PlaceholderTextBlock"
+                                           Foreground="Gray"
+                                           Text="{TemplateBinding Tag}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Visibility="Collapsed" />
+                            </Grid>
+
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text"
+                                     Value="">
+                                <Setter Property="Visibility"
+                                        TargetName="PlaceholderTextBlock"
+                                        Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

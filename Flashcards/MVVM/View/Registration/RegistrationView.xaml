@@ -9,9 +9,6 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
 
-    <UserControl.DataContext>
-        <regViewModel:RegistrationViewModel />
-    </UserControl.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -47,21 +44,15 @@
 
                 <RadioButton Grid.Column="0"
                              Content="Log In"
-                             Style="{StaticResource MenuButtonTheme}"
                              Background="Transparent"
                              FontFamily="Montserrat"
-                             FontWeight="Bold"
-                             Foreground="White"
                              FontSize="20"
                              IsChecked="True"
                              Command="{Binding LogInViewCommand}" />
                 <RadioButton Grid.Column="1"
                              Content="Sign Up"
-                             Style="{StaticResource MenuButtonTheme}"
                              Background="Transparent"
                              FontFamily="Montserrat"
-                             FontWeight="Bold"
-                             Foreground="White"
                              FontSize="20"
                              Command="{Binding SignUpViewCommand}" />
             </Grid>
@@ -87,4 +78,26 @@
                        FontWeight="Bold" />
         </Grid>
     </Grid>
+
+    <UserControl.Resources>
+        <Style TargetType="RadioButton"
+               BasedOn="{StaticResource MenuButtonTheme}">
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked"
+                         Value="True">
+                    <Setter Property="Foreground"
+                            Value="PeachPuff" />
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                </Trigger>
+                <Trigger Property="IsChecked"
+                         Value="False">
+                    <Setter Property="Foreground"
+                            Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
 </UserControl>

@@ -1,10 +1,11 @@
 ﻿using Flashcards.Core;
 using Flashcards.MVVM.Model;
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using Flashcards.MVVM.Model.Context;
+using System; // Add this line to use FlashcardsDbContext
 
 namespace Flashcards.MVVM.ViewModel
 {
@@ -18,27 +19,36 @@ namespace Flashcards.MVVM.ViewModel
 
         public RelayCommand UpdateFrontCommand { get; set; }
         public RelayCommand UpdateBackCommand { get; set; }
-        public CreateSetViewModel()
+        public event Action SetCreated;
+
+
+        private FlashcardsDbContext _context; // Add this line to declare the DbContext
+
+        public CreateSetViewModel(FlashcardsDbContext flashcardsDbContext) // Modify the constructor to accept the DbContext
         {
-            SetName = "Set Name";
+            _context = flashcardsDbContext; // Initialize the DbContext
+
+            SetName = "";
 
             NewSet = new ObservableCollection<Flashcard>()
-            { 
-                new Flashcard("Front", "Back"),
-                new Flashcard("Front", "Back"),
-                new Flashcard("Front kok", "Back")
+            {
+                new Flashcard("", ""),
+                new Flashcard("", ""),
+                new Flashcard("", "")
             };
 
-            AddCardCommand = new RelayCommand(o => {
-                NewSet.Add(new Flashcard("Front", "Back"));
-                foreach(Flashcard c in NewSet)
+            AddCardCommand = new RelayCommand(o =>
+            {
+                NewSet.Add(new Flashcard("", ""));
+                foreach (Flashcard c in NewSet)
                 {
                     Debug.WriteLine($"{c.Front} - {c.Back}");
                 }
             });
 
-            DeleteCardCommand = new RelayCommand(o => {
-                if(NewSet.Count > 3) 
+            DeleteCardCommand = new RelayCommand(o =>
+            {
+                if (NewSet.Count > 3)
                 {
                     if (o is Flashcard card)
                     {
@@ -47,14 +57,45 @@ namespace Flashcards.MVVM.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("The set must include at least 3 cards!");
+                    MessageBox.Show("The set must include at least 3 cards!", "Cmnon now", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
 
-
             CreateSetCommand = new RelayCommand(o =>
             {
-                DemoSets.TestSets.Add(new FlashcardSet(SetName, MainViewModel.Instance.CurrentUser, NewSet.ToArray()));
+                if (SetName.Equals(string.Empty))
+                {
+                    MessageBox.Show("Please enter the name of the set", "Cmnon now", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    var emptyCartds = NewSet.Where(c => c.Front.Equals(string.Empty) || c.Back.Equals(string.Empty));
+                    if (emptyCartds.Any())
+                    {
+                        MessageBox.Show("Please make sure that all cards are ready!", "Cmnon now", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    else
+                    {
+                        User currentUser = _context.Users.Find(MainViewModel.Instance.CurrentUser.ID);
+                        FlashcardSet newFlashcardSet = new FlashcardSet(SetName, currentUser);
+                        foreach (Flashcard card in NewSet)
+                        {
+                            _context.Flashcards.Add(card);
+                            newFlashcardSet.Flashcards.Add(card);
+                        }
+                        _context.FlashcardSets.Add(newFlashcardSet);
+                        _context.SaveChanges();
+                        NewSet = new ObservableCollection<Flashcard>()
+                            {
+                                new Flashcard("", ""),
+                                new Flashcard("", ""),
+                                new Flashcard("", "")
+                            };
+                        SetCreated?.Invoke();
+                        //MainViewModel.Instance.CurrentView = new MySetsViewModel(flashcardsDbContext, this);
+                        MainViewModel.Instance.MySetsViewCommand.Execute(_context);
+                    }
+                }
             });
         }
     }

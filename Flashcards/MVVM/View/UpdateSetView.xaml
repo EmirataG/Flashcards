@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Flashcards.MVVM.View.CreateSetView"
+﻿<UserControl x:Class="Flashcards.MVVM.View.UpdateSetView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,10 +9,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
 
-
-
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -21,8 +18,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="Create a Flashcard Set"
-                   Style="{StaticResource TitleText}" />
+                   Style="{StaticResource TitleText}">
+            <TextBlock.Text>
+                <Binding Path="SetName"
+                         StringFormat="Update your {0} set:" />
+            </TextBlock.Text>
+        </TextBlock>
 
         <TextBox Grid.Row="1"
                  Text="{Binding SetName}"
@@ -32,14 +33,14 @@
                  HorizontalContentAlignment="Center"
                  Style="{StaticResource TextBoxStyle}"
                  Tag="Set Name"
-                 Margin="0, 0, 0, 20"/>
+                 Margin="0, 0, 0, 20" />
 
         <ScrollViewer Grid.Row="2"
                       Background="Transparent"
                       BorderBrush="PeachPuff"
                       BorderThickness="5">
             <ListView HorizontalContentAlignment="Stretch"
-                      ItemsSource="{Binding NewSet}"
+                      ItemsSource="{Binding Flashcards}"
                       Background="Transparent"
                       BorderThickness="0">
                 <ListView.ItemTemplate>
@@ -52,14 +53,13 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox Grid.Column="0"
-                                     Text="{Binding Front, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                     Style="{StaticResource FlashcardSide}" 
-                                     Tag="Front"/>
-                            
-                            <TextBox Grid.Column="1"
-                                     Text="{Binding Back, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     Text="{Binding Front}"
                                      Style="{StaticResource FlashcardSide}"
-                                     Tag="Back"/>
+                                     Tag="Front" />
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding Back}"
+                                     Style="{StaticResource FlashcardSide}"
+                                     Tag="Back" />
                             <Button Grid.Column="2"
                                     Content="X"
                                     Style="{StaticResource CircularButtonStyle}"
@@ -92,9 +92,9 @@
                     Width="200"
                     Height="50" />
             <Button Grid.Column="1"
-                    Content="Create Set"
+                    Content="Update Set"
                     FontWeight="DemiBold"
-                    Command="{Binding CreateSetCommand}"
+                    Command="{Binding UpdateSetCommand}"
                     Style="{StaticResource ButtonStyle}"
                     Width="200"
                     Height="50" />

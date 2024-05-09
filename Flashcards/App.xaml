@@ -5,8 +5,9 @@
              xmlns:viewModel="clr-namespace:Flashcards.MVVM.ViewModel"
              xmlns:regViewModel="clr-namespace:Flashcards.MVVM.ViewModel.Registration"
              xmlns:view="clr-namespace:Flashcards.MVVM.View"
-             xmlns:regView="clr-namespace:Flashcards.MVVM.View.Registration"
-             StartupUri="MainWindow.xaml">
+             xmlns:regView="clr-namespace:Flashcards.MVVM.View.Registration" 
+             xmlns:utils="clr-namespace:Flashcards.Utils"
+             Startup="OnStartup">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -18,15 +19,26 @@
                 <ResourceDictionary Source="Theme/FlashcardTheme.xaml" />
                 <ResourceDictionary Source="Theme/ButtonTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Theme/PasswordBoxTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <utils:ImageSourceConverter x:Key="ImageSourceConverter" />
 
             <Style TargetType="Control">
                 <Setter Property="FontFamily"
                         Value="Montserrat" />
             </Style>
 
+
             <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
                 <view:MainView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:UpdateSetViewModel}">
+                <view:UpdateSetView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+                <view:ProfileView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:MySetsViewModel}">
@@ -55,6 +67,8 @@
             <DataTemplate DataType="{x:Type regViewModel:SignUpViewModel}">
                 <regView:SignUpView />
             </DataTemplate>
+            
+            
 
         </ResourceDictionary>
     </Application.Resources>

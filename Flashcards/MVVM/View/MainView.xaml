@@ -34,7 +34,7 @@
                 <TextBlock HorizontalAlignment="Center"
                            Margin="20, 20, 20, 10">
                     <TextBlock.Text>
-                        <Binding Path="CurrentUser.Name"
+                        <Binding Path="CurrentUser.Username"
                                  StringFormat="Logged in as {0}" />
                     </TextBlock.Text>
                 </TextBlock>
@@ -48,16 +48,20 @@
 
                 <RadioButton Content="My Sets"
                              Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True"
+                             IsChecked="{Binding IsOnMySetsView, Mode=OneWay}"
                              Command="{Binding MySetsViewCommand}" />
                 <RadioButton Content="Browse Sets"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding BrowseSetsViewCommand}" />
+                             Command="{Binding BrowseSetsViewCommand}"
+                             IsChecked="{Binding IsOnBrowseSetsView, Mode=OneWay}"/>
                 <RadioButton Content="Create a New Set"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding CreateSetViewCommand}" />
+                             Command="{Binding CreateSetViewCommand}"
+                             IsChecked="{Binding IsOnCreateSetView, Mode=OneWay}"/>
                 <RadioButton Content="Edit Profile"
-                             Style="{StaticResource MenuButtonTheme}" />
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding ProfileViewCommand}"
+                             IsChecked="{Binding IsOnProfileView, Mode=OneWay}" />
             </StackPanel>
         </Border>
 

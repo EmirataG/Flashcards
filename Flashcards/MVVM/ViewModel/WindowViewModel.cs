@@ -1,35 +1,37 @@
 ﻿using Flashcards.Core;
+using Flashcards.MVVM.Model.Context;
 using Flashcards.MVVM.ViewModel.Registration;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flashcards.MVVM.ViewModel
 {
-    class WindowViewModel : ObservableObject
+    public class WindowViewModel : ObservableObject
     {
+        private FlashcardsDbContext _context;
+
         private static WindowViewModel _instance;
-        public static WindowViewModel Instance
+        public static WindowViewModel GetInstance(FlashcardsDbContext context)
         {
-            get
-            {
-                _instance ??= new WindowViewModel();
-                return _instance;
-            }
+            _instance ??= new WindowViewModel(context);
+            return _instance;
         }
         private object _currentView;
 
         public object CurrentView
         {
             get { return _currentView; }
-            set 
-            { 
+            set
+            {
                 _currentView = value;
                 OnPropertyChanged();
             }
         }
 
-        public WindowViewModel()
+        public WindowViewModel(FlashcardsDbContext flashcardsDbContext)
         {
+            _context = flashcardsDbContext;
             _instance = this;
-            CurrentView = new RegistrationViewModel();
+            CurrentView = new RegistrationViewModel(flashcardsDbContext);
         }
 
     }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -17,12 +17,20 @@
   <ItemGroup>
     <None Remove="Fonts\IndieFlower-Regular.ttf" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\ProfPic.jpg" />
     <None Remove="Images\SideImage-transformed.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Fonts\IndieFlower-Regular.ttf" />
     <Resource Include="Images\logo.png" />
+    <Resource Include="Images\ProfPic.jpg" />
     <Resource Include="Images\SideImage-transformed.jpeg" />
   </ItemGroup>
 

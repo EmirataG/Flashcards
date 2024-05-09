@@ -1,10 +1,9 @@
 ﻿using Flashcards.Core;
 using Flashcards.MVVM.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Flashcards.MVVM.Model.Context;
+using System.Windows.Controls;
 
 namespace Flashcards.MVVM.ViewModel.Registration
 {
@@ -15,22 +14,56 @@ namespace Flashcards.MVVM.ViewModel.Registration
         public string EnteredPassword { get; set; }
         public string EnteredComnfirmPassword { get; set; }
         public RelayCommand SignUpCommand { get; set; }
-
-        public SignUpViewModel()
+        private string _confirmPassword;
+        public string ConfirmPassword
         {
-            SignUpCommand = new RelayCommand(o => {
-                if (EnteredPassword.Equals(EnteredComnfirmPassword))
+            get
+            {
+                return _confirmPassword;
+            }
+            set
+            {
+                _confirmPassword = value;
+                OnPropertyChanged(nameof(ConfirmPassword));
+            }
+        }
+        private string _password;
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+
+        private FlashcardsDbContext _context;
+
+        public SignUpViewModel(FlashcardsDbContext flashcardsDbContext)
+        {
+            _context = flashcardsDbContext;
+
+            SignUpCommand = new RelayCommand(o =>
+            {
+
+                if (Password.Equals(ConfirmPassword))
                 {
-                    User? user = DemoSets.TestUsers.Where(u => u.Name == EnteredUsername).FirstOrDefault();
-                    if (user == null) 
+                    User? user = _context.Users.Where(u => u.Username == EnteredUsername).FirstOrDefault();
+                    if (user == null)
                     {
-                        int nextId = DemoSets.TestUsers.Max(u => u.ID) + 1;
-                        User newUser = new User(nextId, EnteredUsername, EnteredPassword);
-                        DemoSets.TestUsers.Add(newUser);
-                        WindowViewModel.Instance.CurrentView = new MainViewModel(newUser);
+                        User newUser = new User(EnteredUsername, EnteredEmail, Password);
+                        _context.Users.Add(newUser);
+                        _context.SaveChanges();
+                        WindowViewModel.GetInstance(_context).CurrentView = new MainViewModel(newUser, _context);
                     }
                 }
             });
+
+            }
         }
     }
-}

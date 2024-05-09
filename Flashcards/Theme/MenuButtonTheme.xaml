@@ -33,7 +33,13 @@
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="PeachPuff"/>
+                <Setter Property="Background"
+                        Value="PeachPuff" />
+            </Trigger>
+            <Trigger Property="IsChecked"
+                     Value="False">
+                <Setter Property="Background"
+                        Value="Transparent" />
             </Trigger>
         </Style.Triggers>
 
